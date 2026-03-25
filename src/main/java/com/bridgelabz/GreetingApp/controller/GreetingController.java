@@ -1,11 +1,12 @@
 package com.bridgelabz.GreetingApp.controller;
 
-import com.bridgelabz.GreetingApp.model.GreetingEntity;
 import com.bridgelabz.GreetingApp.dto.GreetingDTO;
+import com.bridgelabz.GreetingApp.model.GreetingEntity;
 import com.bridgelabz.GreetingApp.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,12 @@ public class GreetingController {
     public GreetingEntity postGreeting(
             @RequestBody GreetingEntity user) {
         return greetingService.saveGreeting(user);
+    }
+
+    // UC5 - GET greeting by ID
+    @GetMapping("/{id}")
+    public GreetingEntity getGreetingById(@PathVariable Long id) {
+        return greetingService.findGreetingById(id);
     }
 
     // UC1 - PUT
