@@ -58,4 +58,19 @@ public class GreetingService {
     public List<GreetingEntity> getAllGreetings() {
         return greetingRepository.findAll();
     }
+
+    // UC7 - Edit greeting by ID
+    public GreetingEntity updateGreeting(Long id,
+                                         GreetingEntity user) {
+        GreetingEntity existing = greetingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException(
+                        "Greeting not found with id: " + id));
+
+        // Update the fields
+        existing.setFirstName(user.getFirstName());
+        existing.setLastName(user.getLastName());
+        existing.setMessage(getGreetingMessage(user));
+
+        return greetingRepository.save(existing);
+    }
 }

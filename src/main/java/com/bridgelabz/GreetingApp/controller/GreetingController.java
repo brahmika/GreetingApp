@@ -46,10 +46,11 @@ public class GreetingController {
         return greetingService.getAllGreetings();
     }
 
-    // UC1 - PUT
-    @PutMapping
-    public GreetingDTO putGreeting() {
-        return new GreetingDTO(greetingService.getGreetingMessage());
+    // UC7 - PUT update greeting by ID
+    @PutMapping("/{id}")
+    public GreetingEntity updateGreeting(@PathVariable Long id,
+                                         @RequestBody GreetingEntity user) {
+        return greetingService.updateGreeting(id, user);
     }
 
     // UC1 - DELETE
