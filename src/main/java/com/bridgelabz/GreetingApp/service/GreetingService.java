@@ -73,4 +73,12 @@ public class GreetingService {
 
         return greetingRepository.save(existing);
     }
+    // UC8 - Delete greeting by ID
+    public String deleteGreeting(Long id) {
+        GreetingEntity existing = greetingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException(
+                        "Greeting not found with id: " + id));
+        greetingRepository.deleteById(id);
+        return "Greeting with id: " + id + " deleted successfully!";
+    }
 }

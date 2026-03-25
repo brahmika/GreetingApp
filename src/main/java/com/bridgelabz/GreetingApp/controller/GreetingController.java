@@ -53,9 +53,9 @@ public class GreetingController {
         return greetingService.updateGreeting(id, user);
     }
 
-    // UC1 - DELETE
-    @DeleteMapping
-    public GreetingDTO deleteGreeting() {
-        return new GreetingDTO(greetingService.getGreetingMessage());
+    // UC8 - DELETE greeting by ID
+    @DeleteMapping("/{id}")
+    public String deleteGreeting(@PathVariable Long id) {
+        return greetingService.deleteGreeting(id);
     }
 }
