@@ -4,6 +4,7 @@ import com.bridgelabz.GreetingApp.model.GreetingEntity;
 import com.bridgelabz.GreetingApp.repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class GreetingService {
@@ -45,10 +46,16 @@ public class GreetingService {
         );
         return greetingRepository.save(greeting);
     }
+
     // UC5 - Find greeting by ID
     public GreetingEntity findGreetingById(Long id) {
         return greetingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(
                         "Greeting not found with id: " + id));
+    }
+
+    // UC6 - Get all greetings
+    public List<GreetingEntity> getAllGreetings() {
+        return greetingRepository.findAll();
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController
 @RequestMapping("/greeting")
@@ -37,6 +38,12 @@ public class GreetingController {
     @GetMapping("/{id}")
     public GreetingEntity getGreetingById(@PathVariable Long id) {
         return greetingService.findGreetingById(id);
+    }
+
+    // UC6 - GET all greetings
+    @GetMapping("/all")
+    public List<GreetingEntity> getAllGreetings() {
+        return greetingService.getAllGreetings();
     }
 
     // UC1 - PUT
