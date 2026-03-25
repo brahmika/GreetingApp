@@ -1,7 +1,7 @@
 package com.bridgelabz.GreetingApp.controller;
 
-import com.bridgelabz.GreetingApp.dto.GreetingDTO;
 import com.bridgelabz.GreetingApp.model.GreetingEntity;
+import com.bridgelabz.GreetingApp.dto.GreetingDTO;
 import com.bridgelabz.GreetingApp.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,10 +25,11 @@ public class GreetingController {
         return new GreetingDTO(greetingService.getGreetingMessage());
     }
 
-    // UC3 - POST with optional firstName and lastName
+    // UC4 - POST saves greeting to database
     @PostMapping
-    public GreetingDTO postGreeting(@RequestBody GreetingEntity user) {
-        return new GreetingDTO(greetingService.getGreetingMessage(user));
+    public GreetingEntity postGreeting(
+            @RequestBody GreetingEntity user) {
+        return greetingService.saveGreeting(user);
     }
 
     // UC1 - PUT
